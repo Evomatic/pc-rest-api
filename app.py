@@ -29,10 +29,22 @@ def findAll():
     for x in query:
         output[i] = x
         output[i].pop('_id')
-        i+= 1
-    # print(query)
+        i += 1
     return jsonify(output)
 
+
+# GET one owner data from the collection
+@app.route('/find-one/<owner>/', methods=['GET'])
+def findOne(owner):
+    query = computerSpecs.find()
+    output = {}
+    i = 0
+    for x in query:
+        if x['Owner'] == owner:
+            output[i] = x
+            output[i].pop('_id')
+            return jsonify(output)
+            
 
 
 # INSERT new data
@@ -56,9 +68,9 @@ def deleteOne(owner):
     query = computerSpecs.find()
 
     for x in query:
-        if x['owner'] == owner:
+        if x['Owner'] == owner:
             computerSpecs.delete_one(x)
-    return 'Query deleted!'
+    return findAll()
 
 
 
@@ -72,7 +84,7 @@ def updateOne(owner, key, value):
             filter = { key: x[key]}
             newValue = { "$set": { key: value } }
             computerSpecs.update_one(filter, newValue)
-    return 'Query updated!'        
+    return findAll()        
             # computerSpecs.update_one()
 
 
@@ -81,10 +93,6 @@ def updateOne(owner, key, value):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
 
 
 
