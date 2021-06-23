@@ -1,6 +1,6 @@
 # pc-rest-api - a simple CRUD REST API
 
-**pc-rest-api**  is a basic backend CRUD API built in Python, that allows you to FIND, INSERT, UPDATE, and DELETE an individual's computer hardware specs.
+**pc-rest-api**  is a basic backend CRUD API built in Python, that allows you to find, insert, update, and delete an individual's computer hardware specs.
 
 ## Technologies used
   
